@@ -7,5 +7,9 @@ part 'user.g.dart';
 types.User chatUser(ChatUserRef ref) {
   return const types.User(
     id: 'user',
+    imageUrl:
+        'https://pbs.twimg.com/profile_images/1335856760972689408/Zeyo7jdq_bigger.jpg',
+    firstName: '自分',
+    lastName: '自分',
   );
 }

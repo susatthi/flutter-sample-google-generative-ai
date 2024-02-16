@@ -10,6 +10,9 @@ part 'bot.g.dart';
 types.User chatBot(ChatBotRef ref) {
   return const types.User(
     id: 'bot',
+    imageUrl:
+        'https://pbs.twimg.com/profile_images/1709440033516871680/HRyFnn7d_400x400.jpg',
+    firstName: 'kboy',
   );
 }
 

@@ -17,7 +17,7 @@ class ChatRoomNotifier extends _$ChatRoomNotifier {
   }
 
   Future<void> sendMessage(String text) async {
-    _appendMessage(user, text);
+    _addMessage(user, text);
 
     // ボットにメッセージを送信して返信を受け取る
     final bot = ref.read(chatBotProvider);
@@ -25,18 +25,19 @@ class ChatRoomNotifier extends _$ChatRoomNotifier {
       final chatSession = ref.read(chatBotChatSessionProvider);
       final response = await chatSession.sendMessage(Content.text(text));
       final reply = response.text ?? 'エラーが発生しました';
-      _appendMessage(bot, reply);
+      _addMessage(bot, reply);
       // ignore: avoid_catches_without_on_clauses
     } catch (e) {
-      _appendMessage(bot, e.toString());
+      _addMessage(bot, e.toString());
     }
   }
 
-  void _appendMessage(User author, String text) {
-    final timestamp = DateTime.now().millisecondsSinceEpoch.toString();
+  void _addMessage(User author, String text) {
+    final timestamp = DateTime.now().millisecondsSinceEpoch;
     final message = types.TextMessage(
       author: author,
-      id: timestamp,
+      id: timestamp.toString(),
+      createdAt: timestamp,
       text: text,
     );
     state = [message, ...state];
