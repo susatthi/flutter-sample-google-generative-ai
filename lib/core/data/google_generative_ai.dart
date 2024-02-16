@@ -9,20 +9,11 @@ String generativeAiApiKey(GenerativeAiApiKeyRef ref) {
 }
 
 @riverpod
-GenerativeModel generativeModel(
-  GenerativeModelRef ref, {
-  required String model,
-}) {
+GenerativeModel genemiProModel(GenemiProModelRef ref) {
   final apiKey = ref.watch(generativeAiApiKeyProvider);
-  return GenerativeModel(model: model, apiKey: apiKey);
-}
-
-@riverpod
-FutureOr<GenerateContentResponse> generateContent(
-  GenerateContentRef ref, {
-  required String prompt,
-}) async {
-  final model = ref.watch(generativeModelProvider(model: 'gemini-pro'));
-  final content = [Content.text(prompt)];
-  return await model.generateContent(content);
+  return GenerativeModel(
+    model: 'gemini-pro',
+    apiKey: apiKey,
+    generationConfig: GenerationConfig(maxOutputTokens: 100),
+  );
 }

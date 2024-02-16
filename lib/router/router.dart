@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../feature/home/ui/home_page.dart';
+import '../feature/chat/ui/chat_page.dart';
 
 part 'router.g.dart';
 
@@ -16,14 +16,14 @@ GoRouter appRouter(AppRouterRef ref) {
   return router;
 }
 
-@TypedGoRoute<HomeRoute>(
+@TypedGoRoute<ChatRoute>(
   path: '/',
 )
-class HomeRoute extends GoRouteData {
-  const HomeRoute();
+class ChatRoute extends GoRouteData {
+  const ChatRoute();
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const HomePage();
+    return const ChatPage();
   }
 }
